@@ -8,6 +8,7 @@ ENV MYSQL_VERSION 5.5.45
 RUN wget -O /tmp/mysql.tar.gz "http://dev.mysql.com/get/Downloads/MySQL-$MYSQL_MAJOR/mysql-$MYSQL_VERSION-linux2.6-x86_64.tar.gz" \
 	&& mkdir /usr/local/mysql \
 	&& tar -xzf /tmp/mysql.tar.gz -C /usr/local/mysql \
+	&& cd /usr/local/mysql/mysql-*/ && mv * ../ && rmdir mysql-${MYSQL_VERSION}* \
 	&& rm -f /tmp/mysql.tar.gz \
 	&& rm -rf /usr/local/mysql/mysql-test /usr/local/mysql/sql-bench \
 	&& rm -rf /usr/local/mysql/bin/*-debug /usr/local/mysql/bin/*_embedded \
