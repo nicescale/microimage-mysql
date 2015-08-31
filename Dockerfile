@@ -2,10 +2,12 @@ from       microimages/alpine
 
 maintainer william <wlj@nicescale.com>
 
-ENV MYSQL_MAJOR 5.5
-ENV MYSQL_VERSION 5.5.45
+label service=mysql
 
-RUN wget -O /tmp/mysql.tar.gz "http://dev.mysql.com/get/Downloads/MySQL-$MYSQL_MAJOR/mysql-$MYSQL_VERSION-linux2.6-x86_64.tar.gz" \
+env MYSQL_MAJOR 5.5
+env MYSQL_VERSION 5.5.45
+
+run wget -O /tmp/mysql.tar.gz "http://dev.mysql.com/get/Downloads/MySQL-$MYSQL_MAJOR/mysql-$MYSQL_VERSION-linux2.6-x86_64.tar.gz" \
 	&& mkdir /usr/local/mysql \
 	&& tar -xzf /tmp/mysql.tar.gz -C /usr/local/mysql \
 	&& cd /usr/local/mysql/mysql-*/ && mv * ../ && cd .. && rmdir mysql-${MYSQL_VERSION}* \
@@ -17,9 +19,9 @@ RUN wget -O /tmp/mysql.tar.gz "http://dev.mysql.com/get/Downloads/MySQL-$MYSQL_M
 	&& { find /usr/local/mysql -type f -perm /111 -exec strip --strip-all '{}' + || true; } \
 	&& apk del --purge binutils && rm -fr /var/cache/apk/*
 
-ENV PATH $PATH:/usr/local/mysql/bin:/usr/local/mysql/scripts
+env PATH $PATH:/usr/local/mysql/bin:/usr/local/mysql/scripts
 
-RUN mkdir -p /etc/mysql/conf.d \
+run mkdir -p /etc/mysql/conf.d \
 	&& { \
 		echo '[mysqld]'; \
 		echo 'skip-host-cache'; \
@@ -29,11 +31,11 @@ RUN mkdir -p /etc/mysql/conf.d \
 		echo '!includedir /etc/mysql/conf.d/'; \
 	} > /etc/mysql/my.cnf
 
-VOLUME /var/lib/mysql
+volume /var/lib/mysql
 
-COPY docker-entrypoint.sh /entrypoint.sh
+copy docker-entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+entrypoint ["/entrypoint.sh"]
 
-EXPOSE 3306
-CMD ["mysqld"]
+expose 3306
+cmd ["mysqld"]
