@@ -13,7 +13,7 @@ RUN wget -O /tmp/mysql.tar.gz "http://dev.mysql.com/get/Downloads/MySQL-$MYSQL_M
 	&& rm -rf /usr/local/mysql/bin/*-debug /usr/local/mysql/bin/*_embedded \
 	&& find /usr/local/mysql -type f -name "*.a" -delete \
 	&& apk add --update binutils \
-	&& { find /usr/local/mysql -type f -executable -exec strip --strip-all '{}' + || true; } \
+	&& { find /usr/local/mysql -type f -perm /111 -exec strip --strip-all '{}' + || true; } \
 	&& apk del --purge binutils && rm -fr /var/cache/apk/*
 
 ENV PATH $PATH:/usr/local/mysql/bin:/usr/local/mysql/scripts
