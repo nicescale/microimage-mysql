@@ -1,7 +1,6 @@
 
-![logo](https://csphere.cn/assets/7248d71a-e31e-4284-ba96-94b367a12680)
+![logo](https://csphere.cn/assets/909d1121-7026-42b1-8dae-8741eacb5a7d)
 
-## Start a `mysql` server instance
 ## 启动一个MySQL容器
 
 ```console
