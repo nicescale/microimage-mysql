@@ -4,7 +4,7 @@
 ## 启动一个MySQL容器
 
 ```console
-image=index.csphere.cn/microimages/mysql
+$ image=index.csphere.cn/microimages/mysql
 $ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d $image
 ```
 

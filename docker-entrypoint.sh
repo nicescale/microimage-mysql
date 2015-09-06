@@ -21,10 +21,10 @@ if [ "$1" = 'mysqld' ]; then
 		chown -R mysql:mysql "$DATADIR"
 
 		echo 'Running mysql_install_db'
-		mysql_install_db --user=mysql --datadir="$DATADIR" --rpm --basedir=/usr/local/mysql
+		mysql_install_db --user=mysql --datadir="$DATADIR" --rpm --basedir=/usr/
 		echo 'Finished mysql_install_db'
 
-		mysqld --user=mysql --datadir="$DATADIR" --skip-networking --basedir=/usr/local/mysql &
+		mysqld --user=mysql --datadir="$DATADIR" --skip-networking --basedir=/usr/ &
 		pid="$!"
 
 		mysql=( mysql --protocol=socket -uroot )
