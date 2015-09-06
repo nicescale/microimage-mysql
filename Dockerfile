@@ -9,7 +9,7 @@ run wget -O /tmp/mysql.apk http://dl-3.alpinelinux.org/alpine/v3.1/main/x86_64/m
 	&& wget -O /tmp/mysql-common.apk http://dl-3.alpinelinux.org/alpine/v3.1/main/x86_64/mysql-common-5.5.44-r0.apk \
 	&& apk add --update libaio libstdc++ \
 	&& apk add /tmp/mysql-common.apk /tmp/mysql.apk /tmp/mysql-client.apk \
-	&& rm -f /tmp/mysql* && rm -fr /var/cache/apk/*
+	&& rm -f /tmp/mysql* && rm -fr /var/cache/apk/* && rm -f /usr/bin/*_embedded
 
 run mkdir -p /etc/mysql/conf.d \
 	&& { \
