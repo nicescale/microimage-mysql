@@ -25,7 +25,7 @@ volume /var/lib/mysql
 
 copy docker-entrypoint.sh /entrypoint.sh
 
-entrypoint ["/entrypoint.sh"]
+#entrypoint ["/entrypoint.sh"]
 
 expose 3306
-cmd ["mysqld"]
+cmd ["/entrypoint.sh", "mysqld"]
