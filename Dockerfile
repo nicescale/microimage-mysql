@@ -19,7 +19,8 @@ run mkdir -p /etc/mysql/conf.d \
 		echo 'user = mysql'; \
 		echo 'datadir = /var/lib/mysql'; \
 		echo '!includedir /etc/mysql/conf.d/'; \
-	} > /etc/mysql/my.cnf
+	} > /etc/mysql/my.cnf \
+	&& adduser -s /sbin/nologin -H -D mysql
 
 volume /var/lib/mysql
 
